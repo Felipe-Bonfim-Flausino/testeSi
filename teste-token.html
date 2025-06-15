@@ -45,12 +45,16 @@
         console.log('Resposta da API:', dados);
 
         if (res.ok && dados.status === 'ok') {
+          const modulos = dados.dados.modulos || {};
           resultado.innerHTML = `
             <strong>Token válido!</strong><br>
             Usuário: ${dados.dados.username}<br>
             Tipo: ${dados.dados.tipo}<br>
-            Nível de acesso: ${dados.dados.nivel_acesso}<br>
-            Nobreaks: ${dados.dados.nobreaks}
+            Nível de acesso: ${dados.dados.nivel}<br>
+            Almoxarifado: ${modulos.almoxarifado || 'N/A'}<br>
+            Ordem de Serviço: ${modulos.ordem_servico || 'N/A'}<br>
+            Frota: ${modulos.frota || 'N/A'}<br>
+            Nobreaks: ${modulos.nobreaks || 'N/A'}
           `;
           resultado.className = 'mensagem ok';
         } else {
